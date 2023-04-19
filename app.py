@@ -111,8 +111,6 @@ with st.sidebar:
         html = '<img src onerror="{}">'.format(js)
         div = Div(text=html)
         st.bokeh_chart(div)
-        # redirect('https://www.github.com/muarrikhyazka')
-        # webbrowser.open('https://www.github.com/muarrikhyazka')
 
 
 
