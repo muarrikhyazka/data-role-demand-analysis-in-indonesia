@@ -100,7 +100,7 @@ with st.sidebar:
         st.bokeh_chart(div)
 
     if st.button('🍱 GITHUB'):
-        js = "window.location.href = 'https://github.com/muarrikhyazka'"  # Current tab
+        js = "window.location.href = 'https://www.github.com/muarrikhyazka'"  # Current tab
         html = '<img src onerror="{}">'.format(js)
         div = Div(text=html)
         st.bokeh_chart(div)
