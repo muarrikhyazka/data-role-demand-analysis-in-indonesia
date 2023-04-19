@@ -281,5 +281,5 @@ st.write(
 
 c1, c2 = st.columns(2)
 with c1:
-    st.info('**[Github Repo](https://github.com/muarrikhyazka/asian-football-player-performance-analysis)**', icon="🍣")
+    st.info('**[Github Repo](https://github.com/muarrikhyazka/data-role-demand-analysis-in-indonesia)**', icon="🍣")
 
