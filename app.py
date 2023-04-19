@@ -4,6 +4,7 @@ from PIL import Image
 from bokeh.models.widgets import Div
 import plotly.express as px
 import base64
+import nltk
 
 
 title = 'Data Role Demand Analysis In Indonesia'

@@ -4,3 +4,4 @@ Pillow
 bokeh
 plotly
 pybase64
+nltk
