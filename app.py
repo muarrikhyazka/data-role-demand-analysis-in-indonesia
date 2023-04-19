@@ -53,7 +53,7 @@ with open(file_name) as f:
 # Content
 @st.cache
 def load_data():
-    df_raw = pd.read_csv(r'data/data_for_streamlit.csv', sep=';')
+    df_raw = pd.read_csv(r'data/LinkedinScrape_Data_Indonesia_.csv', sep=';')
     df = df_raw.copy()
     return df_raw, df
 
