@@ -81,6 +81,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+def redirect(link):
+    st.markdown(link, unsafe_allow_html=True)
+
 
 with st.sidebar:
     f = open("assets/icon-01.svg","r")
@@ -100,10 +103,11 @@ with st.sidebar:
         st.bokeh_chart(div)
 
     if st.button('🍱 GITHUB'):
-        js = "window.location.href = 'https://www.github.com/muarrikhyazka'"  # Current tab
-        html = '<img src onerror="{}">'.format(js)
-        div = Div(text=html)
-        st.bokeh_chart(div)
+        # js = "window.location.href = 'https://www.github.com/muarrikhyazka'"  # Current tab
+        # html = '<img src onerror="{}">'.format(js)
+        # div = Div(text=html)
+        # st.bokeh_chart(div)
+        redirect('https://www.github.com/muarrikhyazka')
 
 
 
