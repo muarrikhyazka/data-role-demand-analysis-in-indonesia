@@ -5,3 +5,5 @@ bokeh
 plotly
 pybase64
 nltk
+matplotlib
+seaborn
