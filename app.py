@@ -6,6 +6,9 @@ import plotly.express as px
 import base64
 import nltk
 nltk.download('punkt')
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 
 
 title = 'Data Role Demand Analysis In Indonesia'
