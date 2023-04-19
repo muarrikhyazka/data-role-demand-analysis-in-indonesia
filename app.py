@@ -81,7 +81,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-def redirect(link):
+def redirect(_url):
+    link = ‘’
     st.markdown(link, unsafe_allow_html=True)
 
 
