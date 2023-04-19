@@ -9,6 +9,7 @@ nltk.download('punkt')
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set()
+import webbrowser
 
 
 title = 'Data Role Demand Analysis In Indonesia'
@@ -108,7 +109,8 @@ with st.sidebar:
         # html = '<img src onerror="{}">'.format(js)
         # div = Div(text=html)
         # st.bokeh_chart(div)
-        redirect('https://www.github.com/muarrikhyazka')
+        # redirect('https://www.github.com/muarrikhyazka')
+        webbrowser.open('https://www.github.com/muarrikhyazka')
 
 
 
