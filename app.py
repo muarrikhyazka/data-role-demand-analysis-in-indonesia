@@ -82,7 +82,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def redirect(_url):
-    link = ‘’
+    link = ''
     st.markdown(link, unsafe_allow_html=True)
 
 
