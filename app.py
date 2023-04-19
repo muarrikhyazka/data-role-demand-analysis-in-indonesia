@@ -131,209 +131,153 @@ st.dataframe(df.sample(5))
 
 
 st.subheader('Exploratory Data Analysis')
-st.write(
-    """
-    Mostly companies which are needed data person are in Jakarta.
-    """
-)
 
-
-
-
-st.subheader('Insights')
-st.write(
-    """
-    My first boundary is only on Asian player. After that, compare to other continent player. Here is my finding :
-    """
-)
-
-## filter asian player
-df_asia = df_merged[df_merged['Region Name']=='Asia'].copy()
-
-## goals on bar chart
-fig_1 = px.bar(df_asia.sort_values(by = 'Goals', ascending = False), x="Player", y="Goals", barmode="group", text='Goals')
+df_location = df.groupby('Location')['Date'].count().reset_index()
+df_location.columns = ['Location', 'Count']
+fig_1 = px.bar(df_location.sort_values(by = 'Count', ascending = False), x='Location', y="Count", barmode="group", text='Count')
 fig_1.update_traces(textposition="outside")
 st.plotly_chart(fig_1, use_container_width=True)
 
 st.write(
     """
-    First of all, its a mandatory to see goals number which is reflected the performance of each players. Definitely, it will be dominated by Forward and Midfielder.
+    Mostly companies which are needed data person are in Jakarta. Many data job are in big cities in Java. Outside of Java only 2 jobs. There is big gap here.
     """
 )
 
-
-## playing time on bar chart plotly
-tks = df_asia.groupby('Player', as_index=False)['Min'].mean().sort_values(by = 'Min', ascending = False)
-fig_2 = px.bar(tks.sort_values(by = 'Min', ascending = False), x="Player", y="Min", barmode="group", text='Min')
+df_type = df.groupby('Type')['Date'].count().reset_index()
+df_type.columns = ['Type', 'Count']
+fig_2 = px.bar(df_type.sort_values(by = 'Count', ascending = False).iloc[:10], x='Type', y="Count", barmode="group", text='Count')
 fig_2.update_traces(textposition="outside")
 st.plotly_chart(fig_2, use_container_width=True)
 
 st.write(
     """
-    Mostly have been trusted to play more than 1 match. I think its good opportunity for asian player in Top European League. Some of them is regular player on each teams.
+    Of course mostly on fulltime. For college student who need internship, there are many available opportunities here.
     """
 )
 
-## top 10 playing time on plotly viz
-fig_3 = px.bar(tks.nlargest(10, 'Min').sort_values(by = 'Min', ascending = False), x="Player", y="Min", barmode="group", text='Min')
+df_level = df.groupby('Level')['Date'].count().reset_index()
+df_level.columns = ['Level', 'Count']
+fig_3 = px.bar(df_level.sort_values(by = 'Count', ascending = False), x='Level', y="Count", barmode="group", text='Count')
 fig_3.update_traces(textposition="outside")
 st.plotly_chart(fig_3, use_container_width=True)
 
 st.write(
     """
-    Just want to highlight, here they are 10 which have the most playing time. Are your idol in there?.
+    Its a good news for freshgradutes because there are so many opportunities for them on entry level. This role is still much needed as well on mid-senior level.
     """
 )
 
-## age on plotly viz
-fig_4 = px.bar(df_asia.sort_values(by = 'Age', ascending = False), x="Player", y="Age", barmode="group", text='Age')
-fig_4.update_traces(textposition="outside")
+
+df_industry = df.groupby('Industry')['Date'].count().reset_index()
+df_industry.columns = ['Industry', 'Count']
+fig = px.bar(df_industry.sort_values(by = 'Count', ascending = False).iloc[:10], x='Industry', y="Count", barmode="group", text='Count')
+fig.update_traces(textposition="outside")
 st.plotly_chart(fig_4, use_container_width=True)
 
 st.write(
     """
-    They are on every generation, I think its a good regeneration of asian player in Europe.
+    Still dominated by IT industry.
     """
 )
 
-## player number by nationality
-nation = df_asia.groupby('official_name_es', as_index=False)['Player'].count().sort_values(by = 'Player', ascending = False)
-fig_5 = px.bar(nation, y='Player', x='official_name_es', title = 'Nationality', text='Player')
+df_company = df.groupby('Company')['Date'].count().reset_index()
+df_company.columns = ['Company', 'Count']
+fig_5 = px.bar(df_company.sort_values(by = 'Count', ascending = False).iloc[:10], x='Company', y="Count", barmode="group", text='Count')
 fig_5.update_traces(textposition="outside")
 st.plotly_chart(fig_5, use_container_width=True)
 
 st.write(
     """
-    Top 3 on Turkey, Japan, and South Korea.
-    """
-)
-
-st.write(
-    """
-    **After this, I want to compare asian player with other continent player per position.**
-    Before that, lets see the distribution of position
-    """
-)
-
-## position distribution
-pos = df_asia.groupby('Pos', as_index=False)['Player'].count().sort_values(by = 'Player', ascending = False)
-fig_6 = px.pie(pos, values='Player', names='Pos', title = 'Position')
-st.plotly_chart(fig_6, use_container_width=True)
-
-st.write(
-    """
-    Mostly on Forward and Defender.
+    Here they shown by company, just as reference for jobseeker. In average, per company needs 2 data role.
     """
 )
 
 
 st.write(
     """
-    Here they are the comparison
-    \n**FORWARD**
-    """
-)
-
-df_all_forward = df_merged[df_merged['Pos'].str.contains('FW')].copy()
-forward_metrics = ['Goals', 'SoT%', 'Assists', 'AerWon%']
-df_group_forward = df_all_forward.groupby('Region Name', as_index=False)[forward_metrics].mean()
-for metrics in forward_metrics:
-    df_group_forward[metrics] = round(df_group_forward[metrics], 2)
-    fig = px.bar(df_group_forward.sort_values(by = metrics, ascending = False), 
-                 x="Region Name", 
-                 y=metrics, 
-                 barmode="group", 
-                 title = metrics, 
-                 width=800, 
-                 height=600,
-                 text= metrics)
-    fig.update_traces(textposition="outside")
-    st.plotly_chart(fig, use_container_width=True)
-
-st.write(
-    """
-    Asian player is dominating compared to other continent player on all metrics.
-    """
-)
-
-
-st.write(
-    """
-    **MIDFIELDER**
-    """
-)
-
-df_all_midfielder = df_merged[df_merged['Pos'].str.contains('MF')].copy()
-midfielder_metrics = ['PasTotCmp%', 'Assists', 'ScaDrib']
-df_group_midfielder = df_all_midfielder.groupby('Region Name', as_index=False)[midfielder_metrics].mean()
-for metrics in midfielder_metrics:
-    df_group_midfielder[metrics] = round(df_group_midfielder[metrics], 2)
-    fig = px.bar(df_group_midfielder.sort_values(by = metrics, ascending = False),
-                 x="Region Name", 
-                 y=metrics, 
-                 barmode="group", 
-                 title = metrics, 
-                 width=800, 
-                 height=600,
-                 text= metrics)
-    fig.update_traces(textposition="outside")
-    st.plotly_chart(fig, use_container_width=True)
-
-st.write(
-    """
-    As of now, there is no good midfielder from Asia, if compare to other.
+    \n
+    \n
+    \n
+    I did analysis on job description text to know what skills and characteristics mostly needed by companies, so it can be guides for jobseekers.
     """
 )
 
 st.write(
     """
-    **DEFENDER**
+    \n
+    \n
+
+    First of all, I did text preprocessing. Below is the details :
+    \n1. Convert to lowercase and clean punctuations, characters, and whitespaces
+    \n2. Tokenization : Split the text by word
+    \n3. Remove Stopwords : Stopword is meaningless word and not importance word such as 'and', 'or', 'which', etc. Thats why we dont need it and remove it. Here used stopwords from nltk library
+    \n4. Stemming : Remove -ing, -ly, etc. 
+    \n5. Lemmatisation : Convert the word into root word.
     """
 )
 
-df_all_defender = df_merged[df_merged['Pos'].str.contains('DF')].copy()
-defender_metrics = ['Blocks', 'TklDri%', 'Int', 'Clr', 'AerWon%']
-df_group_defender = df_all_defender.groupby('Region Name', as_index=False)[defender_metrics].mean()
-for metrics in defender_metrics:
-    df_group_defender[metrics] = round(df_group_defender[metrics], 2)
-    fig = px.bar(df_group_defender.sort_values(by = metrics, ascending = False), 
-                 x="Region Name", 
-                 y=metrics, 
-                 barmode="group", 
-                 title = metrics, 
-                 width=800, 
-                 height=600,
-                 text= metrics)
-    fig.update_traces(textposition="outside")
-    st.plotly_chart(fig, use_container_width=True)
+
+@st.cache
+def load_data_text():
+    df_desc_clean = pd.read_csv(r'data/df_description_clean.csv', sep=';')
+    return df_desc_clean
+
+df_desc_clean = load_data_text()
+
+def show_word_freq(df, text_column):
+    ## convert to corpus
+    top=20
+    corpus = df[text_column]
+    lst_tokens = nltk.tokenize.word_tokenize(corpus.str.cat(sep=" "))
+
+
+    fig, ax = plt.subplots(nrows=1, ncols=2)
+    fig.suptitle("Most frequent words", fontsize=15)
+    fig.set_size_inches(18.5, 10.5)
+        
+    ## calculate words unigrams
+    dic_words_freq = nltk.FreqDist(lst_tokens)
+    dtf_uni = pd.DataFrame(dic_words_freq.most_common(), 
+                        columns=["Word","Freq"])
+    dtf_uni.set_index("Word").iloc[:top,:].sort_values(by="Freq").plot(
+                    kind="barh", title="Unigrams", ax=ax[0], 
+                    legend=False).grid(axis='x')
+    ax[0].set(ylabel=None)
+        
+    ## calculate words bigrams
+    dic_words_freq = nltk.FreqDist(nltk.ngrams(lst_tokens, 2))
+    dtf_bi = pd.DataFrame(dic_words_freq.most_common(), 
+                        columns=["Word","Freq"])
+    dtf_bi["Word"] = dtf_bi["Word"].apply(lambda x: " ".join(
+                    string for string in x) )
+    dtf_bi.set_index("Word").iloc[:top,:].sort_values(by="Freq").plot(
+                    kind="barh", title="Bigrams", ax=ax[1],
+                    legend=False).grid(axis='x')
+    ax[1].set(ylabel=None)
+    return fig
+
+text_chart = show_word_freq(df_desc_clean, 'Description Clean')
+st.pyplot(text_chart.figure)
+
 
 st.write(
     """
-    On Defender metrics, asian players are only good at Interception and Clearance.
+    From the charts above, we can know that skills and characteristics mostly needed by companies are :
+    \n1. Bachelor Degree.
+    \n2. Data Analysis Skill.
+    \n3. Communication Skill.
+    \n4. Analytical Skill.
+    \n5. Attention Detail.
+    \n6. Data Visualization.
+    \n7. Project Management.
+    \n8. Machine Learning.
     """
 )
 
-st.write(
-    """
-    **GOALKEEPER**
-    """
-)
-st.write(
-    """
-    **There is no viz per metrics, bcs there is no metrics which is related with goalkeeper**
-    """
-)
 
 
 
-
-
-
-
-st.write("""
-    Lastly, We can conclude that asian player can compete with other continent player even european player. They are mostly still on green age so can grow up many more. 
-    From the data, Turkey, Japan, and South Korea can make a hard game with top European country team in world cup in the meantime.
-""")
 
 c1, c2 = st.columns(2)
 with c1:
