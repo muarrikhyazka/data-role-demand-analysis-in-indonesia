@@ -99,7 +99,7 @@ with st.sidebar:
     st.write('\n')
 
     if st.button('🏠 HOME'):
-        js = "window.location.href = 'muarrikhyazka.com'"  # Current tab
+        js = "window.location.href = 'http://muarrikhyazka.com'"  # Current tab
         html = '<img src onerror="{}">'.format(js)
         div = Div(text=html)
         st.bokeh_chart(div)
