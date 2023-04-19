@@ -5,6 +5,7 @@ from bokeh.models.widgets import Div
 import plotly.express as px
 import base64
 import nltk
+nltk.download('punkt')
 
 
 title = 'Data Role Demand Analysis In Indonesia'
