@@ -7,4 +7,3 @@ pybase64
 nltk
 matplotlib
 seaborn
-pycopy-webbrowser

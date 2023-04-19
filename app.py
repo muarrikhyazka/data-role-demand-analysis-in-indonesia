@@ -106,11 +106,12 @@ with st.sidebar:
 
     if st.button('🍱 GITHUB'):
         # js = "window.location.href = 'https://www.github.com/muarrikhyazka'"  # Current tab
-        # html = '<img src onerror="{}">'.format(js)
-        # div = Div(text=html)
-        # st.bokeh_chart(div)
+        js = "window.open('https://www.github.com/muarrikhyazka')"
+        html = '<img src onerror="{}">'.format(js)
+        div = Div(text=html)
+        st.bokeh_chart(div)
         # redirect('https://www.github.com/muarrikhyazka')
-        webbrowser.open('https://www.github.com/muarrikhyazka')
+        # webbrowser.open('https://www.github.com/muarrikhyazka')
 
 
 
