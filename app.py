@@ -171,8 +171,8 @@ st.write(
 
 df_industry = df.groupby('Industry')['Date'].count().reset_index()
 df_industry.columns = ['Industry', 'Count']
-fig = px.bar(df_industry.sort_values(by = 'Count', ascending = False).iloc[:10], x='Industry', y="Count", barmode="group", text='Count')
-fig.update_traces(textposition="outside")
+fig_4 = px.bar(df_industry.sort_values(by = 'Count', ascending = False).iloc[:10], x='Industry', y="Count", barmode="group", text='Count')
+fig_4.update_traces(textposition="outside")
 st.plotly_chart(fig_4, use_container_width=True)
 
 st.write(
