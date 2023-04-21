@@ -121,6 +121,13 @@ with st.sidebar:
 
 st.title(title)
 
+st.write(
+    """
+    \n
+    \n
+    \n
+    """
+)
 
 st.subheader('Business Understanding')
 st.write(
@@ -129,18 +136,31 @@ st.write(
     """
 )
 
+st.write(
+    """
+    \n
+    \n
+    \n
+    """
+)
 
 st.subheader('Data Understanding')
 st.write(
     """
-    I scraped data from linkedin website with 'Data' keyword and region boundary only on Indonesia. I did this on April 14th 2023.
+    I scraped data from linkedin website with 'Data' keyword and region boundary only on Indonesia. I did this on April 14th 2023. You can see on my jupyter notebook in github to know how to get the data.
     """
 )
 
 
 st.dataframe(df.sample(5))
 
-
+st.write(
+    """
+    \n
+    \n
+    \n
+    """
+)
 
 st.subheader('Exploratory Data Analysis')
 
@@ -275,7 +295,7 @@ st.pyplot(text_chart.figure)
 
 st.write(
     """
-    From the charts above, we can know that skills and characteristics mostly needed by companies are :
+    From the charts above, it should be useful for jobseeker, we can know what skills and characteristics mostly needed by companies, they are :
     \n1. Bachelor Degree.
     \n2. Data Analysis Skill.
     \n3. Communication Skill.
@@ -288,7 +308,13 @@ st.write(
 )
 
 
-
+st.write(
+    """
+    \n
+    \n
+    \n
+    """
+)
 
 
 c1, c2 = st.columns(2)
