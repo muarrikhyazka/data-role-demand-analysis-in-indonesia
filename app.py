@@ -320,4 +320,5 @@ st.write(
 c1, c2 = st.columns(2)
 with c1:
     st.info('**[Github Repo](https://github.com/muarrikhyazka/data-role-demand-analysis-in-indonesia)**', icon="🍣")
+    st.info('**[Dashboard](https://drive.google.com/file/d/1w4FFF6JfIcToX2uK6ye44y_b8FsB4WV6/view?usp=sharing)**', icon="🍣")
 
